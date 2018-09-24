@@ -50,6 +50,7 @@ class UIStepper extends Component {
     displayDecrementFirst: PropTypes.bool,
     fontFamily: PropTypes.string,
     innerRef: PropTypes.func,
+    format: PropTypes.func,
   };
   static defaultProps = {
     initialValue: 0,
@@ -82,6 +83,7 @@ class UIStepper extends Component {
     displayDecrementFirst: false,
     fontFamily: 'System',
     innerRef: null,
+    format: null,
   };
   constructor(props) {
     super(props);
@@ -269,6 +271,7 @@ class UIStepper extends Component {
       vertical,
       displayDecrementFirst,
       fontFamily,
+      format,
     } = this.props;
     return (
       <View
@@ -307,7 +310,7 @@ class UIStepper extends Component {
         {displayValue && (
           <View style={styles.valueContainer}>
             <Text style={{ color: textColor, fontSize, fontFamily }}>
-              {this.state.value}
+              {format ? format(this.state.value) : this.state.value}
             </Text>
           </View>
         )}
